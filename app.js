@@ -1,4 +1,3 @@
-(function(){
 	console.log("hello world");
 	$("#start").click(function(){
 		console.log("lala");
@@ -7,24 +6,29 @@
 			$.get(url,function(response){
 				console.log(response.places);
 				for (var i = 0; i < response.places.length; i++) {
-					response.places[i]
-					$("#list").append("<li>"+response.places[i]+"</li>")
+					var place = response.places[i];
+					$("#list").append("<li>"+ place.nom +"</li>")
+					if (place.nom === 'IoT Valley'){
+						var MotDePasse = place.password;
+						$('#mdp').html('Mot de passe IoT Valley: ' + MotDePasse);
+					}
 				}
 			});
-
-
 		});
 		$.ajax(url).fail(function(){
-			alert("fail");
-
+			console.log("fail");
 		});
 		$.ajax(url).always(function(){
-			alert("always");
-
+			console.log("always");
 		});
-
-
-
-
 	});
-})();
+
+	$('#meteo').click(function(){
+		console.log('meteo ok');
+		var url = "http://openweathermap.org/";
+		$.ajax(url).done(function(){
+			$.get(url, function(response){
+				console.log(response.);
+			});
+		});
+	});
